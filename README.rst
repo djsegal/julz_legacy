@@ -1,4 +1,4 @@
- julz
+julz
 ======
 
 *A command line utility for creating ambitious julia apps.*
