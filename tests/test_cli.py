@@ -1,22 +1,22 @@
-"""Tests for our main skele CLI module."""
+"""Tests for our main julz CLI module."""
 
 
 from subprocess import PIPE, Popen as popen
 from unittest import TestCase
 
-from skele import __version__ as VERSION
+from julz import __version__ as VERSION
 
 
 class TestHelp(TestCase):
     def test_returns_usage_information(self):
-        output = popen(['skele', '-h'], stdout=PIPE).communicate()[0]
+        output = popen(['julz', '-h'], stdout=PIPE).communicate()[0]
         self.assertTrue('Usage:' in output)
 
-        output = popen(['skele', '--help'], stdout=PIPE).communicate()[0]
+        output = popen(['julz', '--help'], stdout=PIPE).communicate()[0]
         self.assertTrue('Usage:' in output)
 
 
 class TestVersion(TestCase):
     def test_returns_version_information(self):
-        output = popen(['skele', '--version'], stdout=PIPE).communicate()[0]
+        output = popen(['julz', '--version'], stdout=PIPE).communicate()[0]
         self.assertEqual(output.strip(), VERSION)

@@ -1,21 +1,21 @@
 """
-skele
+julz
 
 Usage:
-  skele hello
-  skele -h | --help
-  skele --version
+  julz hello
+  julz -h | --help
+  julz --version
 
 Options:
   -h --help                         Show this screen.
   --version                         Show version.
 
 Examples:
-  skele hello
+  julz hello
 
 Help:
   For help using this tool, please open an issue on the Github repository:
-  https://github.com/rdegges/skele-cli
+  https://github.com/djsegal/julz
 """
 
 

@@ -7,7 +7,7 @@ from subprocess import call
 
 from setuptools import Command, find_packages, setup
 
-from skele import __version__
+from julz import __version__
 
 
 this_dir = abspath(dirname(__file__))
@@ -28,18 +28,17 @@ class RunTests(Command):
 
     def run(self):
         """Run all tests!"""
-        errno = call(['py.test', '--cov=skele', '--cov-report=term-missing'])
+        errno = call(['py.test', '--cov=julz', '--cov-report=term-missing'])
         raise SystemExit(errno)
 
 
 setup(
-    name = 'skele',
+    name = 'julz',
     version = __version__,
-    description = 'A skeleton command line program in Python.',
+    description = 'A command line utility for creating ambitious julia apps.',
     long_description = long_description,
-    url = 'https://github.com/rdegges/skele-cli',
-    author = 'Randall Degges',
-    author_email = 'r@rdegges.com',
+    url = 'https://github.com/djsegal/julz',
+    author = 'dan segal',
     license = 'UNLICENSE',
     classifiers = [
         'Intended Audience :: Developers',
@@ -63,7 +62,7 @@ setup(
     },
     entry_points = {
         'console_scripts': [
-            'skele=skele.cli:main',
+            'julz=julz.cli:main',
         ],
     },
     cmdclass = {'test': RunTests},
