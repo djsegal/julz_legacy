@@ -2,11 +2,13 @@
 julz
 
 Usage:
+  julz new APP_PATH [--force]
   julz hello
   julz -h | --help
   julz --version
 
 Options:
+  -f --force                        Overwrite files that already exist
   -h --help                         Show this screen.
   --version                         Show version.
 
