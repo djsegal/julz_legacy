@@ -7,7 +7,7 @@ from subprocess import call
 
 from setuptools import Command, find_packages, setup
 
-from julz import __version__
+from app import __version__
 
 
 this_dir = abspath(dirname(__file__))
@@ -28,7 +28,7 @@ class RunTests(Command):
 
     def run(self):
         """Run all tests!"""
-        errno = call(['py.test', '--cov=julz', '--cov-report=term-missing'])
+        errno = call(['py.test', '--cov=app', '--cov-report=term-missing'])
         raise SystemExit(errno)
 
 
@@ -62,7 +62,7 @@ setup(
     },
     entry_points = {
         'console_scripts': [
-            'julz=julz.cli:main',
+            'julz=app.cli:main',
         ],
     },
     cmdclass = {'test': RunTests},
