@@ -1,7 +1,8 @@
-julz
-======
-
-*A command line utility for creating ambitious julia apps.*
++---------------------------------------------------------------------------------+-------------------------------------------------------------+
+| .. image:: https://raw.githubusercontent.com/djsegal/julz/master/julz_logo.png  | julz                                                        |
+|                                                                                 |                                                             |
+|                                                                                 | *A command line utility for creating ambitious julia apps.* |
++---------------------------------------------------------------------------------+-------------------------------------------------------------+
 
 Usage
 -----
