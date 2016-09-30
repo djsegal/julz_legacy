@@ -1,6 +1,6 @@
 """The new command."""
 
-from .base import Base
+from .base import *
 
 class New(Base):
   """Start new Julia project"""

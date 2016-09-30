@@ -1,8 +1,6 @@
 """The generate command."""
 
-from json import dumps
-
-from .base import Base
+from .base import *
 
 class Generate(Base):
   """Generate julia files"""
