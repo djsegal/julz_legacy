@@ -7,6 +7,7 @@ Usage:
   julz generate <generator> <name> [options]
   julz destroy <generator> <name> [options]
   julz simulate [options]
+  julz test [options]
   julz hello
   julz -h | --help
   julz --version

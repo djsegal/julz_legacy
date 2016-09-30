@@ -4,3 +4,4 @@ from .scrap import *
 from .generate import *
 from .destroy import *
 from .simulate import *
+from .test import *

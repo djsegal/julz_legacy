@@ -45,6 +45,8 @@ class New(Base):
 
       if nestedDir == 'config':
         self.makeConfigFolder()
+      elif nestedDir == 'test':
+        self.makeTestHelperModule()
       else:
         print "\n%s not implemented yet.\n" % nestedDir
         return
@@ -71,3 +73,12 @@ class New(Base):
     defaultEnvironments = 'development test production'.split()
     for curEnvironment in defaultEnvironments:
       self.openFile(environmentsDir, '%s.jl' % curEnvironment, True, 3)
+
+  def makeTestHelperModule(self):
+    testDir = self.nestedDirs['test']
+    testHelperFile = self.openFile(testDir, 'test_helper.jl')
+    if not testHelperFile: return
+
+    template = self.loadTemplate('test/test_helper')
+    testHelperFile.write( template.render() )
+    testHelperFile.close()

@@ -29,10 +29,10 @@ class Base(object):
 
     self.standardNestedList = 'app test'.split()
     self.shallowNestedList = 'vendor tmp lib'.split()
-    self.specialNestedList = 'config'.split()
+    self.specialNestedList = 'config test'.split()
 
-    self.nestedDirsList = self.standardNestedList + \
-      self.specialNestedList + self.shallowNestedList
+    self.nestedDirsList = set( self.standardNestedList +
+      self.specialNestedList + self.shallowNestedList )
 
     self.nestedDirs = { d: '/'.join([self.baseDir, d]) for d in self.nestedDirsList }
 
