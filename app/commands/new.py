@@ -2,6 +2,8 @@
 
 import jinja2
 
+import re
+
 from json import dumps
 
 from .base import Base
@@ -20,30 +22,104 @@ class New(Base):
       if self.options['--force']:
         rmtree(baseDir)
       else:
-        raise "There is already a project named \"%s\"." % self.options['APP_PATH']
+        print "There is already a project named \"%s\"." % self.options['APP_PATH']
+        return
 
-    self.makeSubDir(baseDir)
-    mainFile = open('/'.join([baseDir, 'main.jl']), 'a')
+    self.makeAppDir(baseDir)
 
-    env = jinja2.Environment(loader=jinja2.PackageLoader('app', 'templates'))
-    template = env.get_template('main.jl')
+    standardNestedList = 'app test'.split()
+    shallowNestedList = 'vendor tmp lib'.split()
+    specialNestedList = 'config'.split()
 
-    mainFile.write( template.render(name='John Doe') )
-
-    mainFile.close()
-
-    nestedDirsList = 'test app'.split()
+    nestedDirsList = standardNestedList + specialNestedList + shallowNestedList
     nestedDirs = { d: '/'.join([baseDir, d]) for d in nestedDirsList }
-    for nestedDir in nestedDirs.values():
-      self.makeSubDir(nestedDir)
 
     appDirsList = 'helpers functions types methods modules'.split()
 
-    for nestedDir in nestedDirs.keys():
+    self.makeBaseDirs(nestedDirs, baseDir)
+    self.makeStandardSubDirs(appDirsList, standardNestedList, nestedDirs)
+    self.makeSpecialSubDirs(specialNestedList, nestedDirs)
+
+  def makeAppDir(this, baseDir):
+    this.printHeader("app directory")
+    this.makeSubDir(baseDir)
+
+  def makeBaseDirs(this, nestedDirs, baseDir):
+    this.printHeader("base directories")
+    for nestedDir in nestedDirs.values():
+      this.makeSubDir(nestedDir)
+
+  def makeStandardSubDirs(this, appDirsList, standardNestedList, nestedDirs):
+    this.printHeader("standard sub directories")
+    lastItem = standardNestedList[-1]
+
+    for nestedDir in standardNestedList:
+      print "  + %s" % this.getLastChunk(nestedDir)
       appDirs = { d: '/'.join([nestedDirs[nestedDir], d]) for d in appDirsList }
       for appDir in appDirs.values():
-        self.makeSubDir(appDir)
+        this.makeSubDir(appDir, 2)
+      if nestedDir != lastItem: print ""
 
-  def makeSubDir(this, subDir):
+  def makeSpecialSubDirs(this, specialNestedList, nestedDirs):
+    this.printHeader("special sub directories")
+    for nestedDir in specialNestedList:
+      print "  + %s" % this.getLastChunk(nestedDir)
+
+      if nestedDir == 'config':
+        this.makeConfigFolder(nestedDirs)
+      else:
+        print "\n%s not implemented yet.\n" % nestedDir
+        return
+
+  def makeConfigFolder(this, nestedDirs):
+    configDir = nestedDirs['config']
+
+    applicationFile = this.openFile(configDir, 'application.jl')
+    env = jinja2.Environment(loader=jinja2.PackageLoader('app', 'templates'))
+    template = env.get_template('application.jl')
+
+    applicationFile.write( template.render(name='John Doe') )
+    applicationFile.close()
+
+    this.openFile(configDir, 'environment.jl', True)
+
+    environmentsDir = '/'.join([configDir, 'environments'])
+    this.makeSubDir(environmentsDir, 2)
+
+    defaultEnvironments = 'development test production'.split()
+    for curEnvironment in defaultEnvironments:
+      this.openFile(environmentsDir, '%s.jl' % curEnvironment, True, 3)
+    print ""
+
+  def makeSubDir(this, subDir, depth=1):
     makedirs(subDir)
-    open('/'.join([subDir, '.keep']), 'a').close()
+    this.openFile(subDir, '.keep', True, 2, False)
+    this.printBullet(this.getLastChunk(subDir), depth)
+
+  def getLastChunk(this, curItem):
+    if ( '/' not in curItem ) : return curItem
+    return curItem.rsplit('/', 1)[-1]
+
+  def printHeader(this, header):
+    print "\nMaking %s:" % header
+
+  def openFile(this, curDir, curFile, autoClose=False, depth=2, verbose=True):
+    openedFile = open('/'.join([curDir, curFile]), 'a')
+    if verbose: this.printBullet(this.getLastChunk(curFile), depth)
+    if not autoClose : return openedFile
+    openedFile.close()
+
+  def printBullet(this, bullet, depth):
+    if depth == 1:
+      prefix = "  + "
+    elif depth == 2:
+      prefix = "    - "
+    elif depth == 3:
+      prefix = "      * "
+    else:
+      print "\ndepth of %s not implemented yet.\n" % depth
+
+    if ".jl" in bullet:
+      prefix = re.sub('[^\s]+', '>', prefix)
+
+    print "%s%s" % ( prefix, bullet )
