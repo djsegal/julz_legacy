@@ -5,7 +5,9 @@ module Application
     if startswith(cur_item, ".") ; continue ; end
     for sub_item in readdir("app/$cur_item")
       if startswith(sub_item, ".") ; continue ; end
-      include("app/$cur_item/$sub_item")
+      include("../app/$cur_item/$sub_item")
     end
   end
+
+  println("done.")
 end
