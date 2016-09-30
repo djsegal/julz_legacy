@@ -9,16 +9,15 @@ module Application
     end
   end
 
-  function functions_in(m::Module)
-    s = string(m)
-    out = Base.REPLCompletions.completions(s * ".", length(s)+1)
-    out = filter(x-> x != "eval", out[1])
-  end
-
   macro export_all()
     m = current_module()
+
+    s = string(m)
+    curFunctions = Base.REPLCompletions.completions(s * ".", length(s)+1)
+    curFunctions = filter(x-> x != "eval", curFunctions[1])
+
     e = quote end  # start out with a blank quoted expression
-    for fun in functions_in(m)
+    for fun in curFunctions
       fname = Symbol("$(fun)")   # create your function name
       blk = quote
         export $(esc(fname))
