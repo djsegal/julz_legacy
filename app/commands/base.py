@@ -37,7 +37,7 @@ class Base(object):
   def printHeader(self, header):
     print "\nMaking %s:" % header
 
-  def printBullet(self, bullet, depth):
+  def printBullet(self, bullet, depth=1):
     bulletSymbol = '-' if '.jl' in bullet else '+'
     prefix = '  ' * depth + bulletSymbol + ' '
     print "%s%s" % ( prefix, bullet )

@@ -44,7 +44,7 @@ class New(Base):
     lastItem = standardNestedList[-1]
 
     for nestedDir in standardNestedList:
-      print "  + %s" % self.getLastChunk(nestedDir)
+      self.printBullet(self.getLastChunk(nestedDir))
       appDirs = { d: '/'.join([nestedDirs[nestedDir], d]) for d in appDirsList }
       for appDir in appDirs.values():
         self.makeSubDir(appDir, 2)
@@ -53,7 +53,7 @@ class New(Base):
   def makeSpecialSubDirs(self, specialNestedList, nestedDirs):
     self.printHeader("special sub directories")
     for nestedDir in specialNestedList:
-      print "  + %s" % self.getLastChunk(nestedDir)
+      self.printBullet(self.getLastChunk(nestedDir))
 
       if nestedDir == 'config':
         self.makeConfigFolder(nestedDirs)
