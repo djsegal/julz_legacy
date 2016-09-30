@@ -40,79 +40,79 @@ class New(Base):
     self.makeStandardSubDirs(appDirsList, standardNestedList, nestedDirs)
     self.makeSpecialSubDirs(specialNestedList, nestedDirs)
 
-  def makeAppDir(this, baseDir):
-    this.printHeader("app directory")
-    this.makeSubDir(baseDir)
+  def makeAppDir(self, baseDir):
+    self.printHeader("app directory")
+    self.makeSubDir(baseDir)
 
-  def makeBaseDirs(this, nestedDirs, baseDir):
-    this.printHeader("base directories")
+  def makeBaseDirs(self, nestedDirs, baseDir):
+    self.printHeader("base directories")
     for nestedDir in nestedDirs.values():
-      this.makeSubDir(nestedDir)
+      self.makeSubDir(nestedDir)
 
-  def makeStandardSubDirs(this, appDirsList, standardNestedList, nestedDirs):
-    this.printHeader("standard sub directories")
+  def makeStandardSubDirs(self, appDirsList, standardNestedList, nestedDirs):
+    self.printHeader("standard sub directories")
     lastItem = standardNestedList[-1]
 
     for nestedDir in standardNestedList:
-      print "  + %s" % this.getLastChunk(nestedDir)
+      print "  + %s" % self.getLastChunk(nestedDir)
       appDirs = { d: '/'.join([nestedDirs[nestedDir], d]) for d in appDirsList }
       for appDir in appDirs.values():
-        this.makeSubDir(appDir, 2)
+        self.makeSubDir(appDir, 2)
       if nestedDir != lastItem: print ""
 
-  def makeSpecialSubDirs(this, specialNestedList, nestedDirs):
-    this.printHeader("special sub directories")
+  def makeSpecialSubDirs(self, specialNestedList, nestedDirs):
+    self.printHeader("special sub directories")
     for nestedDir in specialNestedList:
-      print "  + %s" % this.getLastChunk(nestedDir)
+      print "  + %s" % self.getLastChunk(nestedDir)
 
       if nestedDir == 'config':
-        this.makeConfigFolder(nestedDirs)
+        self.makeConfigFolder(nestedDirs)
       else:
         print "\n%s not implemented yet.\n" % nestedDir
         return
 
-  def makeConfigFolder(this, nestedDirs):
+  def makeConfigFolder(self, nestedDirs):
     configDir = nestedDirs['config']
-    this.makeApplicationModule(configDir)
-    this.makeEnvironmentFiles(configDir)
+    self.makeApplicationModule(configDir)
+    self.makeEnvironmentFiles(configDir)
     print ""
 
-  def makeApplicationModule(this, configDir):
-    applicationFile = this.openFile(configDir, 'application.jl')
+  def makeApplicationModule(self, configDir):
+    applicationFile = self.openFile(configDir, 'application.jl')
     env = jinja2.Environment(loader=jinja2.PackageLoader('app', 'templates'))
     template = env.get_template('application.jl')
 
     applicationFile.write( template.render(name='John Doe') )
     applicationFile.close()
 
-  def makeEnvironmentFiles(this, configDir):
-    this.openFile(configDir, 'environment.jl', True)
+  def makeEnvironmentFiles(self, configDir):
+    self.openFile(configDir, 'environment.jl', True)
     environmentsDir = '/'.join([configDir, 'environments'])
-    this.makeSubDir(environmentsDir, 2)
+    self.makeSubDir(environmentsDir, 2)
 
     defaultEnvironments = 'development test production'.split()
     for curEnvironment in defaultEnvironments:
-      this.openFile(environmentsDir, '%s.jl' % curEnvironment, True, 3)
+      self.openFile(environmentsDir, '%s.jl' % curEnvironment, True, 3)
 
-  def makeSubDir(this, subDir, depth=1):
+  def makeSubDir(self, subDir, depth=1):
     makedirs(subDir)
-    this.openFile(subDir, '.keep', True, 2, False)
-    this.printBullet(this.getLastChunk(subDir), depth)
+    self.openFile(subDir, '.keep', True, 2, False)
+    self.printBullet(self.getLastChunk(subDir), depth)
 
-  def getLastChunk(this, curItem):
+  def getLastChunk(self, curItem):
     if ( '/' not in curItem ) : return curItem
     return curItem.rsplit('/', 1)[-1]
 
-  def printHeader(this, header):
+  def printHeader(self, header):
     print "\nMaking %s:" % header
 
-  def openFile(this, curDir, curFile, autoClose=False, depth=2, verbose=True):
+  def openFile(self, curDir, curFile, autoClose=False, depth=2, verbose=True):
     openedFile = open('/'.join([curDir, curFile]), 'a')
-    if verbose: this.printBullet(this.getLastChunk(curFile), depth)
+    if verbose: self.printBullet(self.getLastChunk(curFile), depth)
     if not autoClose : return openedFile
     openedFile.close()
 
-  def printBullet(this, bullet, depth):
+  def printBullet(self, bullet, depth):
     bulletSymbol = '-' if '.jl' in bullet else '+'
     prefix = '  ' * depth + bulletSymbol + ' '
     print "%s%s" % ( prefix, bullet )
