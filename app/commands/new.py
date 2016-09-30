@@ -13,45 +13,44 @@ class New(Base):
         print "There is already a project named \"%s\"." % self.options['<app_path>']
         return
 
-    self.makeAppDir(self.baseDir)
+    self.makeAppDir()
+    self.makeBaseDirs()
+    self.makeStandardSubDirs()
+    self.makeSpecialSubDirs()
 
-    self.makeBaseDirs(self.nestedDirs, self.baseDir)
-    self.makeStandardSubDirs(self.appDirsList, self.standardNestedList, self.nestedDirs)
-    self.makeSpecialSubDirs(self.specialNestedList, self.nestedDirs)
-
-  def makeAppDir(self, baseDir):
+  def makeAppDir(self):
     self.printHeader("app directory")
-    self.makeSubDir(baseDir)
+    self.makeSubDir(self.baseDir)
 
-  def makeBaseDirs(self, nestedDirs, baseDir):
+  def makeBaseDirs(self):
     self.printHeader("base directories")
-    for nestedDir in nestedDirs.values():
+    for nestedDir in self.nestedDirs.values():
       self.makeSubDir(nestedDir)
 
-  def makeStandardSubDirs(self, appDirsList, standardNestedList, nestedDirs):
+  def makeStandardSubDirs(self):
     self.printHeader("standard sub directories")
-    lastItem = standardNestedList[-1]
+    lastItem = self.standardNestedList[-1]
 
-    for nestedDir in standardNestedList:
+    for nestedDir in self.standardNestedList:
       self.printBullet(self.getLastChunk(nestedDir))
-      appDirs = { d: '/'.join([nestedDirs[nestedDir], d]) for d in appDirsList }
+      appDirs = { d: '/'.join([self.nestedDirs[nestedDir], d]) for d in self.appDirsList }
       for appDir in appDirs.values():
         self.makeSubDir(appDir, 2)
       if nestedDir != lastItem: print ""
 
-  def makeSpecialSubDirs(self, specialNestedList, nestedDirs):
+  def makeSpecialSubDirs(self):
     self.printHeader("special sub directories")
-    for nestedDir in specialNestedList:
+    for nestedDir in self.specialNestedList:
       self.printBullet(self.getLastChunk(nestedDir))
 
       if nestedDir == 'config':
-        self.makeConfigFolder(nestedDirs)
+        self.makeConfigFolder()
       else:
         print "\n%s not implemented yet.\n" % nestedDir
         return
 
-  def makeConfigFolder(self, nestedDirs):
-    configDir = nestedDirs['config']
+  def makeConfigFolder(self):
+    configDir = self.nestedDirs['config']
     self.makeApplicationModule(configDir)
     self.makeEnvironmentFiles(configDir)
     print ""
