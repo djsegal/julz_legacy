@@ -6,7 +6,7 @@ import re
 
 import inflect
 
-from os import makedirs, path
+from os import makedirs, path, remove, stat
 
 from shutil import rmtree
 
@@ -40,8 +40,26 @@ class Base(object):
     raise NotImplementedError('You must implement the run() method yourself!')
 
   def openFile(self, curDir, curFile, autoClose=False, depth=2, verbose=True):
-    openedFile = open('/'.join([curDir, curFile]), 'a')
-    if verbose: self.printBullet(self.getLastChunk(curFile), depth)
+    fileName = '%s/%s' % (curDir, curFile)
+    curSuffix = ''
+
+    if not self.isEmptyFile(fileName):
+      print "\nThere is already a file named \"%s\". " % fileName
+      inputText = "Overwrite? (enter 'h' for help) [Ynaqdh] "
+      overwriteOption = raw_input(inputText)
+      self.eraseLines(3)
+
+      overwriteFile = overwriteOption.strip()[0].lower() == 'y'
+      if overwriteFile:
+        curSuffix += " (overwritten)"
+        remove(fileName)
+      else:
+        curSuffix += " (skipped)"
+        if verbose: self.printBullet(self.getLastChunk(fileName) + curSuffix, depth)
+        return False
+
+    openedFile = open(fileName, 'a')
+    if verbose: self.printBullet(self.getLastChunk(fileName) + curSuffix, depth)
     if not autoClose : return openedFile
     openedFile.close()
 
@@ -85,6 +103,10 @@ class Base(object):
     env = jinja2.Environment(loader=jinja2.PackageLoader('app', 'templates'))
     template = env.get_template('%s.jl' % templateName)
     return template
+
+  def isEmptyFile(self, fileName):
+    if not path.isfile(fileName): return True
+    return stat(fileName).st_size == 0
 
   def eraseLines(self, numLines=1):
     cursorUpOne = '\x1b[1A'

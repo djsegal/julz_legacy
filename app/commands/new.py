@@ -57,6 +57,7 @@ class New(Base):
 
   def makeApplicationModule(self, configDir):
     applicationFile = self.openFile(configDir, 'application.jl')
+    if not applicationFile: return
 
     template = self.loadTemplate('application')
     applicationFile.write( template.render() )
