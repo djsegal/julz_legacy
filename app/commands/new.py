@@ -6,13 +6,13 @@ class New(Base):
   """Start new Julia project"""
 
   def run(self):
-    baseDir = self.getRelativePath() + self.options['APP_PATH']
+    baseDir = self.getRelativePath() + self.options['<app_path>']
 
     if path.exists(baseDir):
       if self.options['--force']:
         rmtree(baseDir)
       else:
-        print "There is already a project named \"%s\"." % self.options['APP_PATH']
+        print "There is already a project named \"%s\"." % self.options['<app_path>']
         return
 
     self.makeAppDir(baseDir)
