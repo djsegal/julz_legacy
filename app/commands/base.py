@@ -16,6 +16,24 @@ class Base(object):
     self.args = args
     self.kwargs = kwargs
 
+    pathParam = '--path'
+    self.baseDir = './' if not self.isPresentParam(pathParam) \
+      else self.getRelativePath(pathParam)
+
+    if self.isPresentParam('<app_path>'):
+      self.baseDir += self.options['<app_path>']
+
+    self.standardNestedList = 'app test'.split()
+    self.shallowNestedList = 'vendor tmp lib'.split()
+    self.specialNestedList = 'config'.split()
+
+    self.nestedDirsList = self.standardNestedList + \
+      self.specialNestedList + self.shallowNestedList
+
+    self.nestedDirs = { d: '/'.join([self.baseDir, d]) for d in self.nestedDirsList }
+
+    self.appDirsList = 'functions types methods'.split()
+
   def run(self):
     raise NotImplementedError('You must implement the run() method yourself!')
 
@@ -42,10 +60,13 @@ class Base(object):
     prefix = '  ' * depth + bulletSymbol + ' '
     print "%s%s" % ( prefix, bullet )
 
-  def getRelativePath(self):
-    pathParam = '--path'
-    if pathParam not in self.options: return './'
-
+  def getRelativePath(self, pathParam):
+    print self.options
     relativePath = self.options[pathParam]
     if relativePath.endswith('/'): return relativePath
     return "%s/" % relativePath
+
+  def isPresentParam(self, param):
+    if param not in self.options: return False
+    if self.options[param] == None: return False
+    return True

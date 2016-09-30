@@ -6,29 +6,18 @@ class New(Base):
   """Start new Julia project"""
 
   def run(self):
-    baseDir = self.getRelativePath() + self.options['<app_path>']
-
-    if path.exists(baseDir):
+    if path.exists(self.baseDir):
       if self.options['--force']:
-        rmtree(baseDir)
+        rmtree(self.baseDir)
       else:
         print "There is already a project named \"%s\"." % self.options['<app_path>']
         return
 
-    self.makeAppDir(baseDir)
+    self.makeAppDir(self.baseDir)
 
-    standardNestedList = 'app test'.split()
-    shallowNestedList = 'vendor tmp lib'.split()
-    specialNestedList = 'config'.split()
-
-    nestedDirsList = standardNestedList + specialNestedList + shallowNestedList
-    nestedDirs = { d: '/'.join([baseDir, d]) for d in nestedDirsList }
-
-    appDirsList = 'functions types methods'.split()
-
-    self.makeBaseDirs(nestedDirs, baseDir)
-    self.makeStandardSubDirs(appDirsList, standardNestedList, nestedDirs)
-    self.makeSpecialSubDirs(specialNestedList, nestedDirs)
+    self.makeBaseDirs(self.nestedDirs, self.baseDir)
+    self.makeStandardSubDirs(self.appDirsList, self.standardNestedList, self.nestedDirs)
+    self.makeSpecialSubDirs(self.specialNestedList, self.nestedDirs)
 
   def makeAppDir(self, baseDir):
     self.printHeader("app directory")
