@@ -12,6 +12,7 @@ Options:
   -f --force                        Overwrite files that already exist
   -h --help                         Show this screen.
   --version                         Show version.
+  --path=<path>                     Relative path to use for julia project
 
 Examples:
   julz hello

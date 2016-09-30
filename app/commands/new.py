@@ -16,7 +16,7 @@ class New(Base):
   """Start new Julia project"""
 
   def run(self):
-    baseDir = self.options['APP_PATH']
+    baseDir = self.getRelativePath() + self.options['APP_PATH']
 
     if path.exists(baseDir):
       if self.options['--force']:

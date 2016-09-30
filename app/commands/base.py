@@ -11,3 +11,11 @@ class Base(object):
 
   def run(self):
     raise NotImplementedError('You must implement the run() method yourself!')
+
+  def getRelativePath(self):
+    pathParam = '--path'
+    if pathParam not in self.options: return './'
+
+    relativePath = self.options[pathParam]
+    if relativePath.endswith('/'): return relativePath
+    return "%s/" % relativePath
