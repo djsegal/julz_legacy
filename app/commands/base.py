@@ -75,3 +75,8 @@ class Base(object):
   def pluralize(self, word):
     if inflect.engine().singular_noun(word): return word
     return inflect.engine().plural(word)
+
+  def singularize(self, word):
+    singularWord = inflect.engine().singular_noun(word)
+    if singularWord: return singularWord
+    return word
