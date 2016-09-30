@@ -3,7 +3,7 @@
 from .base import *
 
 class Test(Base):
-  """Run Julia code"""
+  """Test Julia code"""
 
   def run(self):
     call(["julia", "./test/test_helper.jl"])

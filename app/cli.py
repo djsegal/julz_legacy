@@ -13,6 +13,8 @@ Usage:
   julz --version
   julz g <generator> <name> [options]
   julz d <generator> <name> [options]
+  julz s [options]
+  julz t [options]
 
 Options:
   -f --force                        Overwrite files that already exist
