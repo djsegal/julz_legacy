@@ -11,6 +11,8 @@ Usage:
   julz hello
   julz -h | --help
   julz --version
+  julz g <generator> <name> [options]
+  julz d <generator> <name> [options]
 
 Options:
   -f --force                        Overwrite files that already exist

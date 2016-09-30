@@ -5,3 +5,5 @@ from .generate import *
 from .destroy import *
 from .simulate import *
 from .test import *
+from .g import *
+from .d import *
