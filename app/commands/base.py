@@ -61,7 +61,6 @@ class Base(object):
     print "%s%s" % ( prefix, bullet )
 
   def getRelativePath(self, pathParam):
-    print self.options
     relativePath = self.options[pathParam]
     if relativePath.endswith('/'): return relativePath
     return "%s/" % relativePath
