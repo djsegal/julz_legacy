@@ -73,7 +73,11 @@ class New(Base):
 
   def makeConfigFolder(this, nestedDirs):
     configDir = nestedDirs['config']
+    this.makeApplicationModule(configDir)
+    this.makeEnvironmentFiles(configDir)
+    print ""
 
+  def makeApplicationModule(this, configDir):
     applicationFile = this.openFile(configDir, 'application.jl')
     env = jinja2.Environment(loader=jinja2.PackageLoader('app', 'templates'))
     template = env.get_template('application.jl')
@@ -81,15 +85,14 @@ class New(Base):
     applicationFile.write( template.render(name='John Doe') )
     applicationFile.close()
 
+  def makeEnvironmentFiles(this, configDir):
     this.openFile(configDir, 'environment.jl', True)
-
     environmentsDir = '/'.join([configDir, 'environments'])
     this.makeSubDir(environmentsDir, 2)
 
     defaultEnvironments = 'development test production'.split()
     for curEnvironment in defaultEnvironments:
       this.openFile(environmentsDir, '%s.jl' % curEnvironment, True, 3)
-    print ""
 
   def makeSubDir(this, subDir, depth=1):
     makedirs(subDir)
