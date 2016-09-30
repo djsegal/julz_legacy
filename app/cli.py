@@ -2,7 +2,8 @@
 julz
 
 Usage:
-  julz new APP_PATH [--force]
+  julz new APP_PATH [options]
+  julz generate GENERATOR [args] [options]
   julz hello
   julz -h | --help
   julz --version

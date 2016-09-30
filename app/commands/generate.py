@@ -1,11 +1,11 @@
-"""The hello command."""
+"""The generate command."""
 
 from json import dumps
 
 from .base import Base
 
-class Hello(Base):
-  """Say hello, world!"""
+class Generate(Base):
+  """Generate julia files"""
 
   def run(self):
     print 'Hello, world!'
