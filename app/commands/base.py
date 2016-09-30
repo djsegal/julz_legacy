@@ -80,3 +80,10 @@ class Base(object):
     singularWord = inflect.engine().singular_noun(word)
     if singularWord: return singularWord
     return word
+
+  def eraseLines(self, numLines=1):
+    cursorUpOne = '\x1b[1A'
+    eraseLine = '\x1b[2K'
+
+    compositeErase = cursorUpOne + eraseLine
+    print(compositeErase * numLines + cursorUpOne)
