@@ -7,11 +7,13 @@ class Scrap(Base):
 
   def run(self):
     if not path.exists(self.baseDir):
-      print "Project '%s' doesn't exist" % self.options['<app_path>']
+      print "\n Project '%s' doesn't exist\n" % self.options['<app_path>']
       return
 
     if not self.options['--force']:
-      print "'--force' is required for this command"
+      print "\n '--force' is required for this command\n"
       return
 
+    self.printHeader("app directory", " Deleting")
     rmtree(self.baseDir)
+    print("\n ...and done.\n")

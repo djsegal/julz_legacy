@@ -54,8 +54,8 @@ class Base(object):
     if ( '/' not in curItem ) : return curItem
     return curItem.rsplit('/', 1)[-1]
 
-  def printHeader(self, header):
-    print "\nMaking %s:" % header
+  def printHeader(self, header, curAction='Making'):
+    print "\n%s %s:" % (curAction, header)
 
   def printBullet(self, bullet, depth=1):
     bulletSymbol = '-' if '.jl' in bullet else '+'
