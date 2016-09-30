@@ -29,5 +29,7 @@ module Application
 
   @export_all
 
-  println("done.")
+  function main()
+    println("done.")
+  end
 end

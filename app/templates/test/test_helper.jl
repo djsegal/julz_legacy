@@ -14,5 +14,7 @@ module TestHelper
     end
   end
 
-  println("done.")
+  function main()
+    println("done.")
+  end
 end

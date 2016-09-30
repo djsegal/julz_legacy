@@ -6,4 +6,4 @@ class Test(Base):
   """Test Julia code"""
 
   def run(self):
-    call(["julia", "./test/test_helper.jl"])
+    call('julia -L ./test/test_helper.jl -e "TestHelper.main();"', shell=True)
