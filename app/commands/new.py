@@ -110,16 +110,6 @@ class New(Base):
     openedFile.close()
 
   def printBullet(this, bullet, depth):
-    if depth == 1:
-      prefix = "  + "
-    elif depth == 2:
-      prefix = "    - "
-    elif depth == 3:
-      prefix = "      * "
-    else:
-      print "\ndepth of %s not implemented yet.\n" % depth
-
-    if ".jl" in bullet:
-      prefix = re.sub('[^\s]+', '>', prefix)
-
+    bulletSymbol = '-' if '.jl' in bullet else'+'
+    prefix = '  ' * depth + bulletSymbol + ' '
     print "%s%s" % ( prefix, bullet )
