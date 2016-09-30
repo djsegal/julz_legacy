@@ -5,6 +5,7 @@ Usage:
   julz new <app_path> [options]
   julz scrap <app_path> [options]
   julz generate <generator> <name> [args] [options]
+  julz destroy <generator> <name> [args] [options]
   julz hello
   julz -h | --help
   julz --version

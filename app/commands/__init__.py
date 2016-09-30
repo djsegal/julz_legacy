@@ -1,4 +1,5 @@
 from .hello import *
 from .new import *
-from .generate import *
 from .scrap import *
+from .generate import *
+from .destroy import *
