@@ -34,7 +34,7 @@ class New(Base):
     nestedDirsList = standardNestedList + specialNestedList + shallowNestedList
     nestedDirs = { d: '/'.join([baseDir, d]) for d in nestedDirsList }
 
-    appDirsList = 'functions types methods modules'.split()
+    appDirsList = 'functions types methods'.split()
 
     self.makeBaseDirs(nestedDirs, baseDir)
     self.makeStandardSubDirs(appDirsList, standardNestedList, nestedDirs)
