@@ -110,6 +110,6 @@ class New(Base):
     openedFile.close()
 
   def printBullet(this, bullet, depth):
-    bulletSymbol = '-' if '.jl' in bullet else'+'
+    bulletSymbol = '-' if '.jl' in bullet else '+'
     prefix = '  ' * depth + bulletSymbol + ' '
     print "%s%s" % ( prefix, bullet )
