@@ -4,6 +4,8 @@ import jinja2
 
 import re
 
+import inflect
+
 from os import makedirs, path
 
 from shutil import rmtree
@@ -69,3 +71,6 @@ class Base(object):
     if param not in self.options: return False
     if self.options[param] == None: return False
     return True
+
+  def pluralize(self, word):
+    return inflect.engine().plural(word)
