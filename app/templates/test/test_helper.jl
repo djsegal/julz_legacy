@@ -1,6 +1,8 @@
 __precompile__()
 
 module TestHelper
+  include("../config/application.jl")
+  using .Application
   using Base.Test
 
   for cur_item in readdir("test")
