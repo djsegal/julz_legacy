@@ -1,6 +1,6 @@
 """The send command."""
 
-from .send import *
+from .base import *
 
-class L(Send):
+class Send(Base):
   """Send Julia code"""

@@ -3,16 +3,16 @@ from .new import *
 from .scrap import *
 from .generate import *
 from .destroy import *
-from .simulate import *
+from .run import *
 from .test import *
-from .launch import *
+from .send import *
 from .install import *
 from .update import *
 
 from .g import *
 from .d import *
-from .s import *
+from .r import *
 from .t import *
-from .l import *
+from .s import *
 from .i import *
 from .u import *

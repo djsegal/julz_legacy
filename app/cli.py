@@ -6,9 +6,9 @@ Usage:
   julz scrap <app_path> [options]
   julz generate <generator> <name> [options]
   julz destroy <generator> <name> [options]
-  julz simulate [options]
+  julz run [options]
   julz test [options]
-  julz launch [options]
+  julz send [options]
   julz install [options]
   julz update [options]
   julz hello
@@ -16,9 +16,9 @@ Usage:
   julz --version
   julz g <generator> <name> [options]
   julz d <generator> <name> [options]
-  julz s [options]
+  julz r [options]
   julz t [options]
-  julz l [options]
+  julz s [options]
   julz i [options]
   julz u [options]
 
