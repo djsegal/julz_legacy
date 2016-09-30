@@ -8,6 +8,9 @@ Usage:
   julz destroy <generator> <name> [options]
   julz simulate [options]
   julz test [options]
+  julz launch [options]
+  julz install [options]
+  julz update [options]
   julz hello
   julz -h | --help
   julz --version
@@ -15,6 +18,9 @@ Usage:
   julz d <generator> <name> [options]
   julz s [options]
   julz t [options]
+  julz l [options]
+  julz i [options]
+  julz u [options]
 
 Options:
   -f --force                        Overwrite files that already exist

@@ -39,7 +39,8 @@ class Base(object):
     self.appDirsList = 'functions types methods'.split()
 
   def run(self):
-    raise NotImplementedError('You must implement the run() method yourself!')
+    print '\n This method has not been implemented yet.\n'
+    return
 
   def openFile(self, curDir, curFile, autoClose=False, depth=2, verbose=True):
     fileName = '%s/%s' % (curDir, curFile)
