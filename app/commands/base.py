@@ -81,6 +81,11 @@ class Base(object):
     if singularWord: return singularWord
     return word
 
+  def loadTemplate(self, templateName):
+    env = jinja2.Environment(loader=jinja2.PackageLoader('app', 'templates'))
+    template = env.get_template('%s.jl' % templateName)
+    return template
+
   def eraseLines(self, numLines=1):
     cursorUpOne = '\x1b[1A'
     eraseLine = '\x1b[2K'

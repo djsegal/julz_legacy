@@ -57,10 +57,9 @@ class New(Base):
 
   def makeApplicationModule(self, configDir):
     applicationFile = self.openFile(configDir, 'application.jl')
-    env = jinja2.Environment(loader=jinja2.PackageLoader('app', 'templates'))
-    template = env.get_template('application.jl')
 
-    applicationFile.write( template.render(name='John Doe') )
+    template = self.loadTemplate('application')
+    applicationFile.write( template.render() )
     applicationFile.close()
 
   def makeEnvironmentFiles(self, configDir):
