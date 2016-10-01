@@ -9,15 +9,15 @@
 
 | Command  | Description |
 | ------------- | ------------- |
-| julz new \<app_path\> [options] | Start new project |
-| julz scrap \<app_path\> [options] | Scrap old project |
-| julz (install\|i) [options] | Install Julia packages |
-| julz (update\|u) [options] | Update Julia packages |
-| julz (generate\|g) \<generator\> \<name\> [\<field\>...] [options] | Generate Julia file |
-| julz (destroy\|d) \<generator\> \<name\> [\<field\>...] [options] | Destroy Julia file |
-| julz (run\|r) [options] | Run Julia code |
-| julz (test\|t) [options] | Test Julia code |
-| julz (send\|s) [options] | Send Julia code elsewhere (unimplemented) |
+| `julz new <app_path> [options]` | Start new project |
+| `julz scrap <app_path> [options]` | Scrap old project |
+| `julz (install|i) [options]` | Install Julia packages |
+| `julz (update|u) [options]` | Update Julia packages |
+| `julz (generate|g) <generator> <name> [<field>...] [options]` | Generate Julia file |
+| `julz (destroy|d) <generator> <name> [<field>...] [options]` | Destroy Julia file |
+| `julz (run|r) [options]` | Run Julia code |
+| `julz (test|t) [options]` | Test Julia code |
+| `julz (send|s) [options]` | Send Julia code elsewhere (unimplemented) |
 
 ---------------
 
@@ -26,27 +26,27 @@
 ---------------
 
 - `./`
-  - Gemfile
-  - Gemfile.lock
-  - lib
-  - tmp
-  - vendor
-  - config
-    - application.jl
-    - environment.jl
-    - environments
-      - development.jl
-      - test.jl
-      - production.jl
-  - app
-    - functions
-    - methods
-    - types
-  - test
-    - test_helper.jl
-    - functions
-    - methods
-    - types
+  - `Gemfile`
+  - `Gemfile.lock`
+  - `lib`
+  - `tmp`
+  - `vendor`
+  - `config`
+    - `application.jl`
+    - `environment.jl`
+    - `environments`
+      - `development.jl`
+      - `test.jl`
+      - `production.jl`
+  - `app`
+    - `functions`
+    - `methods`
+    - `types`
+  - `test`
+    - `test_helper.jl`
+    - `functions`
+    - `methods`
+    - `types`
 
 
 ### Todo
