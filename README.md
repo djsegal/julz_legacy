@@ -3,21 +3,21 @@
 
 ---------------
 
-## Commands
+### Usage
 
 ---------------
 
 | Command  | Description |
 | ------------- | ------------- |
-| julz new <app_path> [options] | |
-| julz scrap <app_path> [options] | |
-| julz generate|g <generator> <name> [<field>...] [options] | |
-| julz destroy|d <generator> <name> [<field>...] [options] | |
-| julz run|r [options] | |
-| julz test|t [options] | |
-| julz send|s [options] | |
-| julz install|i [options] | |
-| julz update|u [options] | |
+| julz new <app_path> [options] | Start new project |
+| julz scrap <app_path> [options] | Scrap old project |
+| julz (generate\|g) <generator> <name> [<field>...] [options] | Generate Julia file |
+| julz (destroy\|d) <generator> <name> [<field>...] [options] | Destroy Julia file |
+| julz (run\|r) [options] | Run Julia Code |
+| julz (test\|t) [options] | Test Julia Code |
+| julz (send\|s) [options] | Send Julia Code elsewhere |
+| julz (install\|i) [options] | Install Julia Packages |
+| julz (update\|u) [options] | Update Julia Packages |
 
 ---------------
 
