@@ -4,8 +4,8 @@ julz
 Usage:
   julz new <app_path> [options]
   julz scrap <app_path> [options]
-  julz generate <generator> <name> [options]
-  julz destroy <generator> <name> [options]
+  julz generate <generator> <name> [<field>...] [options]
+  julz destroy <generator> <name> [<field>...] [options]
   julz run [options]
   julz test [options]
   julz send [options]
@@ -14,8 +14,8 @@ Usage:
   julz hello
   julz -h | --help
   julz --version
-  julz g <generator> <name> [options]
-  julz d <generator> <name> [options]
+  julz g <generator> <name> [<field>...] [options]
+  julz d <generator> <name> [<field>...] [options]
   julz r [options]
   julz t [options]
   julz s [options]

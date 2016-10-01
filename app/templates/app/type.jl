@@ -1,4 +1,6 @@
-type Foo
-  bar
-  baz::Int
+type {{ name.title() }}
+
+  {% for field in fields %}
+    {{- field }}
+  {% endfor %}
 end

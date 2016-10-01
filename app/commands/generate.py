@@ -22,19 +22,31 @@ class Generate(Base):
       self.printBullet(self.getLastChunk(curDir), 2)
       fileName = self.baseDir + curDir
 
+      suffix = ''
       templateName = '/'.join([nestedDir, self.singularize(curGenerator)])
       if nestedDir == 'test':
-        curName += '_test'
+        suffix += '_test'
         templateName += '_test'
 
-      curFile = self.openFile(fileName, curName + '.jl', False, 3)
+      curFile = self.openFile(fileName, curName + suffix + '.jl', False, 3)
       if not curFile:
         print ''
         continue
 
+      templateVariables = { 'name': curName }
+      if nestedDir == 'app':
+        curFields = self.options['<field>']
+        for i in range(len(curFields)):
+          splitField = curFields[i].split(':')
+          if len(splitField) > 1:
+            splitField[1:] = [ x.title() for x in splitField[1:] ]
+          curFields[i] = '::'.join(splitField)
+
+        templateVariables['fields'] = curFields
+
       template = self.loadTemplate(templateName)
 
-      curFile.write( template.render(name='John Doe') )
+      curFile.write( template.render(templateVariables) )
 
       curFile.close()
       print ''

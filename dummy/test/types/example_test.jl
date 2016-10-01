@@ -1,1 +1,1 @@
-@test Foo(42, 0).bar == 42
+@test Example(42, 0).bar == 42
