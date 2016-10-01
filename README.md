@@ -21,6 +21,34 @@
 
 ---------------
 
+### Project Architecture
+
+---------------
+
+- `./`
+  - Gemfile
+  - Gemfile.lock
+  - lib
+  - tmp
+  - vendor
+  - config
+    - application.jl
+    - environment.jl
+    - environments
+      - development.jl
+      - test.jl
+      - production.jl
+  - app
+    - functions
+    - methods
+    - types
+  - test
+    - test_helper.jl
+    - functions
+    - methods
+    - types
+
+
 ### Todo
 
 - [ ] Fill out Todo List
