@@ -11,13 +11,13 @@
 | ------------- | ------------- |
 | julz new <app_path> [options] | Start new project |
 | julz scrap <app_path> [options] | Scrap old project |
-| julz (install\|i) [options] | Install Julia Packages |
-| julz (update\|u) [options] | Update Julia Packages |
+| julz (install\|i) [options] | Install Julia packages |
+| julz (update\|u) [options] | Update Julia packages |
 | julz (generate\|g) <generator> <name> [<field>...] [options] | Generate Julia file |
 | julz (destroy\|d) <generator> <name> [<field>...] [options] | Destroy Julia file |
-| julz (run\|r) [options] | Run Julia Code |
-| julz (test\|t) [options] | Test Julia Code |
-| julz (send\|s) [options] | Send Julia Code elsewhere (not implemented yet) |
+| julz (run\|r) [options] | Run Julia code |
+| julz (test\|t) [options] | Test Julia code |
+| julz (send\|s) [options] | Send Julia code elsewhere (not implemented yet) |
 
 ---------------
 
