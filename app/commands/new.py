@@ -14,6 +14,7 @@ class New(Base):
         return
 
     self.makeAppDir()
+    self.makeGemfile()
     self.makeBaseDirs()
     self.makeStandardSubDirs()
     self.makeSpecialSubDirs()
@@ -21,6 +22,17 @@ class New(Base):
   def makeAppDir(self):
     self.printHeader("app directory")
     self.makeSubDir(self.baseDir)
+
+  def makeGemfile(self):
+    self.printHeader("gemfile")
+    self.openFile(self.baseDir, 'Gemfile.lock', True)
+
+    gemfile = self.openFile(self.baseDir, 'Gemfile')
+    if not gemfile: return
+
+    template = self.loadTemplate('Gemfile', '')
+    gemfile.write( template.render() )
+    gemfile.close()
 
   def makeBaseDirs(self):
     self.printHeader("base directories")
@@ -61,7 +73,7 @@ class New(Base):
     applicationFile = self.openFile(configDir, 'application.jl')
     if not applicationFile: return
 
-    template = self.loadTemplate('application')
+    template = self.loadTemplate('config/application')
     applicationFile.write( template.render() )
     applicationFile.close()
 
