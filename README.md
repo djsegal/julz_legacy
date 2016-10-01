@@ -17,7 +17,7 @@
 | julz (destroy\|d) \<generator\> \<name\> [\<field\>...] [options] | Destroy Julia file |
 | julz (run\|r) [options] | Run Julia code |
 | julz (test\|t) [options] | Test Julia code |
-| julz (send\|s) [options] | Send Julia code elsewhere (not implemented yet) |
+| julz (send\|s) [options] | Send Julia code elsewhere (unimplemented) |
 
 ---------------
 
