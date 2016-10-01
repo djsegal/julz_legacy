@@ -102,9 +102,9 @@ class Base(object):
     if singularWord: return singularWord
     return word
 
-  def loadTemplate(self, templateName):
+  def loadTemplate(self, templateName, suffix=".jl"):
     env = jinja2.Environment(loader=jinja2.PackageLoader('app', 'templates'))
-    template = env.get_template('%s.jl' % templateName)
+    template = env.get_template('%s%s' % (templateName, suffix))
     return template
 
   def isEmptyFile(self, fileName):
