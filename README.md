@@ -9,8 +9,8 @@
 
 | Command  | Description |
 | ------------- | ------------- |
-| julz new <app_path> [options] | Start new project |
-| julz scrap <app_path> [options] | Scrap old project |
+| julz new \<app_path\> [options] | Start new project |
+| julz scrap \<app_path\> [options] | Scrap old project |
 | julz (install\|i) [options] | Install Julia packages |
 | julz (update\|u) [options] | Update Julia packages |
 | julz (generate\|g) \<generator\> \<name\> [\<field\>...] [options] | Generate Julia file |
