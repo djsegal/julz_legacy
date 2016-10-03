@@ -1,7 +1,7 @@
-function include_all(cur_item)
+function include_all(cur_item, relative_dir="..", ignoreTopFiles=false)
   if isfile(cur_item)
     if endswith(cur_item, ".jl")
-      include("../$cur_item")
+      include("$relative_dir/$cur_item")
       return
     end
   end
@@ -10,6 +10,9 @@ function include_all(cur_item)
 
   for sub_item in readdir(cur_item)
     if startswith(sub_item, ".") ; continue ; end
-    include_all("$cur_item/$sub_item")
+    if endswith(sub_item, ".jl") && ignoreTopFiles
+      continue
+    end
+    include_all("$cur_item/$sub_item", relative_dir)
   end
 end
