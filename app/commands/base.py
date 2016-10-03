@@ -36,7 +36,7 @@ class Base(object):
 
     self.nestedDirs = { d: '/'.join([self.baseDir, d]) for d in self.nestedDirsList }
 
-    self.appDirsList = 'functions types methods'.split()
+    self.appDirsList = 'functions types methods macros'.split()
 
   def run(self):
     print '\n This method has not been implemented yet.\n'

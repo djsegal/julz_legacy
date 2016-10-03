@@ -66,6 +66,7 @@ Project Architecture
     -  ``functions``
     -  ``methods``
     -  ``types``
+    -  ``macros``
 
   +  ``test``
 
@@ -73,5 +74,6 @@ Project Architecture
     -  ``functions``
     -  ``methods``
     -  ``types``
+    -  ``macros``
 
 .. |julz| image:: https://raw.githubusercontent.com/djsegal/julz/master/julz_logo.png
