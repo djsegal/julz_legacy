@@ -54,9 +54,9 @@ Project Architecture
     -  ``application.jl``
     -  ``environment.jl``
     -  ``environments``
-    -  ``development.jl``
-    -  ``test.jl``
-    -  ``production.jl``
+      +  ``development.jl``
+      +  ``test.jl``
+      +  ``production.jl``
 
   +  ``app``
 
