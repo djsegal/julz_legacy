@@ -31,5 +31,5 @@ class Destroy(Base):
         curSuffix = " (deleted)"
         remove(curFile)
 
-      self.printBullet(self.getLastChunk(curFile) + curSuffix, 2)
+      self.printBullet(self.getLastChunk(curFile) + curSuffix, 3)
       print ''
