@@ -65,17 +65,21 @@ class New(Base):
 
   def makeConfigFolder(self):
     configDir = self.nestedDirs['config']
-    self.makeApplicationModule(configDir)
+
+    configFiles = 'application include_all export_all'.split()
+    for curFileName in configFiles:
+      self.makeConfigFile(configDir, curFileName)
+
     self.makeEnvironmentFiles(configDir)
     print ""
 
-  def makeApplicationModule(self, configDir):
-    applicationFile = self.openFile(configDir, 'application.jl')
-    if not applicationFile: return
+  def makeConfigFile(self, configDir, curFileName):
+    configFile = self.openFile(configDir, '%s.jl' % curFileName)
+    if not configFile: return
 
-    template = self.loadTemplate('config/application')
-    applicationFile.write( template.render() )
-    applicationFile.close()
+    template = self.loadTemplate('config/%s' % curFileName)
+    configFile.write( template.render() )
+    configFile.close()
 
   def makeEnvironmentFiles(self, configDir):
     self.openFile(configDir, 'environment.jl', True)
