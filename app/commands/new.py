@@ -23,6 +23,13 @@ class New(Base):
     self.printHeader("app directory")
     self.makeSubDir(self.baseDir)
 
+    readme = self.openFile(self.baseDir, 'README.md')
+    if not readme: return
+
+    template = self.loadTemplate('README.md', '')
+    readme.write( template.render({ 'name': self.options['<app_path>'] }) )
+    readme.close()
+
   def makeGemfile(self):
     self.printHeader("gemfile")
     self.openFile(self.baseDir, 'Gemfile.lock', True)
