@@ -44,6 +44,7 @@ Project Architecture
 ~~~~~~~~~~~~~~~~~~~~
 
 -  ``./``
+  +  ``README.md``
   +  ``Gemfile``
   +  ``Gemfile.lock``
   +  ``lib``
