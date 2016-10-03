@@ -2,8 +2,11 @@ __precompile__()
 
 module TestHelper
   include("../config/application.jl")
-  using .Application
-  using Base.Test
+
+  using Reexport
+  @reexport using .Application
+  @reexport using Base.Test
+  @export_all_except ["Application"]
 
   function main()
     @testset "All Tests" begin

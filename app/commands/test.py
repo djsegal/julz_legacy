@@ -7,8 +7,6 @@ class Test(Base):
 
   def run(self):
     juliaCall = 'julia -L ./test/test_helper.jl -e \''
-    juliaCall += 'include("./config/application.jl"); '
-    juliaCall += 'using .Application; using Base.Test; '
-    juliaCall += 'TestHelper.main();\''
+    juliaCall += 'using .TestHelper; TestHelper.main();\''
 
     call(juliaCall, shell=True)

@@ -69,7 +69,7 @@ class New(Base):
     initializersDir = '/'.join([configDir, 'initializers'])
     self.makeSubDir(initializersDir, 2)
 
-    configFiles = 'application include_all export_all'.split()
+    configFiles = 'application include_all export_all_except'.split()
     for curFileName in configFiles:
       self.makeConfigFile(configDir, curFileName)
 

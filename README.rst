@@ -54,7 +54,7 @@ Project Architecture
     -  ``initializers``
     -  ``application.jl``
     -  ``include_all.jl``
-    -  ``export_all.jl``
+    -  ``export_all_except.jl``
     -  ``environment.jl``
     -  ``environments``
       +  ``development.jl``
