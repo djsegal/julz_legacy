@@ -66,6 +66,9 @@ class New(Base):
   def makeConfigFolder(self):
     configDir = self.nestedDirs['config']
 
+    initializersDir = '/'.join([configDir, 'initializers'])
+    self.makeSubDir(initializersDir, 2)
+
     configFiles = 'application include_all export_all'.split()
     for curFileName in configFiles:
       self.makeConfigFile(configDir, curFileName)

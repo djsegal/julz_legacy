@@ -51,6 +51,7 @@ Project Architecture
   +  ``vendor``
   +  ``config``
 
+    -  ``initializers``
     -  ``application.jl``
     -  ``include_all.jl``
     -  ``export_all.jl``
