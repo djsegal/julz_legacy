@@ -2,7 +2,7 @@
 |                                                                 |          |
 | **julz**                                                        |          |
 |                                                                 |  |julz|  |
-| *A command line utility for creating ambitious julia apps.*     |          |
+| *A command line utility for creating scalable julia apps.*      |          |
 |                                                                 |          |
 +-----------------------------------------------------------------+----------+
 
