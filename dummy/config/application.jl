@@ -1,6 +1,7 @@
 __precompile__()
 
 module Application
+  include("input.jl")
   include("include_all.jl")
   include("export_all_except.jl")
 
