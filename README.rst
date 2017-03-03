@@ -85,4 +85,4 @@ Project Architecture
     -  ``types``
     -  ``macros``
 
-.. |julz| image:: https://raw.githubusercontent.com/djsegal/julz/master/julz_logo.png
+.. |julz| image:: https://raw.githubusercontent.com/djsegal/julz_legacy/master/julz_logo.png
